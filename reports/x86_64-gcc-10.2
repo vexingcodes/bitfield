@@ -1,0 +1,551 @@
+default_config::using_bf::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+default_config::using_manual::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+
+default_config::using_bf::set_address(unsigned char&, unsigned char):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 31
+        and     eax, -32
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+default_config::using_manual::set_address(unsigned char&, unsigned char):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 31
+        and     eax, -32
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+default_config::using_bf::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+default_config::using_manual::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+
+default_config::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::communication_channel):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 3
+        sal     esi, 5
+        and     eax, -97
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+default_config::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::communication_channel):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     esi, 96
+        and     eax, -97
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+default_config::using_bf::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+default_config::using_manual::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+
+default_config::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::transmission_direction):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+default_config::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::transmission_direction):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+no_shift::using_bf::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+no_shift::using_manual::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+
+no_shift::using_bf::set_address(unsigned char&, unsigned char):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 31
+        and     eax, -32
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+no_shift::using_manual::set_address(unsigned char&, unsigned char):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 31
+        and     eax, -32
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+no_shift::using_bf::get_channel(unsigned char):
+        mov     eax, edi
+        and     eax, 96
+        ret
+no_shift::using_manual::get_channel(unsigned char):
+        mov     eax, edi
+        and     eax, 96
+        ret
+
+no_shift::using_bf::set_channel(unsigned char&, no_shift::m_sequence_control::communication_channel):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 96
+        and     eax, -97
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+no_shift::using_manual::set_channel(unsigned char&, no_shift::m_sequence_control::communication_channel):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, 96
+        and     eax, -97
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+no_shift::using_bf::get_direction(unsigned char):
+        mov     eax, edi
+        and     eax, -128
+        ret
+no_shift::using_manual::get_direction(unsigned char):
+        mov     eax, edi
+        and     eax, -128
+        ret
+
+no_shift::using_bf::set_direction(unsigned char&, no_shift::m_sequence_control::transmission_direction):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, -128
+        and     eax, 127
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+no_shift::using_manual::set_direction(unsigned char&, no_shift::m_sequence_control::transmission_direction):
+        movzx   eax, BYTE PTR [rdi]
+        and     esi, -128
+        and     eax, 127
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+unchecked_strategy::using_bf::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+unchecked_strategy::using_manual::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+
+unchecked_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        movzx   eax, BYTE PTR [rdi]
+        and     eax, -32
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+unchecked_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        movzx   eax, BYTE PTR [rdi]
+        and     eax, -32
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+unchecked_strategy::using_bf::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+unchecked_strategy::using_manual::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+
+unchecked_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::communication_channel):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     eax, -97
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+unchecked_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::communication_channel):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     eax, -97
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+unchecked_strategy::using_bf::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+unchecked_strategy::using_manual::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+
+unchecked_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::transmission_direction):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+unchecked_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::transmission_direction):
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      eax, esi
+        mov     BYTE PTR [rdi], al
+        ret
+
+return_bool_strategy::using_bf::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+return_bool_strategy::using_manual::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+
+return_bool_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        xor     eax, eax
+        test    sil, -32
+        jne     .L42
+        movzx   eax, BYTE PTR [rdi]
+        and     eax, -32
+        or      esi, eax
+        mov     eax, 1
+        mov     BYTE PTR [rdi], sil
+.L42:
+        ret
+return_bool_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        xor     eax, eax
+        test    sil, -32
+        jne     .L54
+        movzx   eax, BYTE PTR [rdi]
+        and     eax, -32
+        or      esi, eax
+        mov     eax, 1
+        mov     BYTE PTR [rdi], sil
+.L54:
+        ret
+
+return_bool_strategy::using_bf::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+return_bool_strategy::using_manual::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+
+return_bool_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::communication_channel):
+        xor     eax, eax
+        test    esi, -4
+        jne     .L46
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     eax, -97
+        or      esi, eax
+        mov     eax, 1
+        mov     BYTE PTR [rdi], sil
+.L46:
+        ret
+return_bool_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::communication_channel):
+        xor     eax, eax
+        test    esi, -4
+        jne     .L58
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     eax, -97
+        or      esi, eax
+        mov     eax, 1
+        mov     BYTE PTR [rdi], sil
+.L58:
+        ret
+
+return_bool_strategy::using_bf::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+return_bool_strategy::using_manual::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+
+return_bool_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::transmission_direction):
+        xor     eax, eax
+        test    esi, -2
+        jne     .L50
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      esi, eax
+        mov     eax, 1
+        mov     BYTE PTR [rdi], sil
+.L50:
+        ret
+return_bool_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::transmission_direction):
+        xor     eax, eax
+        test    esi, -2
+        jne     .L62
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      esi, eax
+        mov     eax, 1
+        mov     BYTE PTR [rdi], sil
+.L62:
+        ret
+
+exception_strategy::using_bf::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+exception_strategy::using_manual::get_address(unsigned char):
+        mov     eax, edi
+        and     eax, 31
+        ret
+
+exception_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        push    r12
+        mov     eax, esi
+        push    rbp
+        sub     rsp, 8
+        test    al, -32
+        jne     .L70
+        movzx   esi, BYTE PTR [rdi]
+        and     esi, -32
+        or      esi, eax
+        mov     BYTE PTR [rdi], sil
+        add     rsp, 8
+        pop     rbp
+        pop     r12
+        ret
+exception_strategy::using_bf::set_address(unsigned char&, unsigned char) [clone .cold]:
+.L70:
+        mov     edi, 16
+        call    __cxa_allocate_exception
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        mov     rbp, rax
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        mov     edx, OFFSET FLAT:bf::bit_field_error::~bit_field_error() [complete object destructor]
+        mov     esi, OFFSET FLAT:typeinfo for bf::bit_field_error
+        mov     rdi, rbp
+        mov     QWORD PTR [rbp+0], OFFSET FLAT:vtable for bf::bit_field_error+16
+        call    __cxa_throw
+        mov     r12, rax
+        mov     rdi, rbp
+        call    __cxa_free_exception
+        mov     rdi, r12
+        call    _Unwind_Resume
+exception_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        push    r12
+        mov     eax, esi
+        push    rbp
+        sub     rsp, 8
+        test    al, -32
+        jne     .L94
+        movzx   esi, BYTE PTR [rdi]
+        and     esi, -32
+        or      esi, eax
+        mov     BYTE PTR [rdi], sil
+        add     rsp, 8
+        pop     rbp
+        pop     r12
+        ret
+exception_strategy::using_manual::set_address(unsigned char&, unsigned char) [clone .cold]:
+.L94:
+        mov     edi, 16
+        call    __cxa_allocate_exception
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        mov     rbp, rax
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        mov     edx, OFFSET FLAT:bf::bit_field_error::~bit_field_error() [complete object destructor]
+        mov     esi, OFFSET FLAT:typeinfo for bf::bit_field_error
+        mov     rdi, rbp
+        mov     QWORD PTR [rbp+0], OFFSET FLAT:vtable for bf::bit_field_error+16
+        call    __cxa_throw
+        mov     r12, rax
+        mov     rdi, rbp
+        call    __cxa_free_exception
+        mov     rdi, r12
+        call    _Unwind_Resume
+
+exception_strategy::using_bf::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+exception_strategy::using_manual::get_channel(unsigned char):
+        mov     eax, edi
+        shr     al, 5
+        and     eax, 3
+        ret
+
+exception_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel):
+        push    r12
+        push    rbp
+        sub     rsp, 8
+        test    esi, -4
+        jne     .L78
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     eax, -97
+        or      esi, eax
+        mov     BYTE PTR [rdi], sil
+        add     rsp, 8
+        pop     rbp
+        pop     r12
+        ret
+exception_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel) [clone .cold]:
+.L78:
+        mov     edi, 16
+        call    __cxa_allocate_exception
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        mov     rbp, rax
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        mov     edx, OFFSET FLAT:bf::bit_field_error::~bit_field_error() [complete object destructor]
+        mov     esi, OFFSET FLAT:typeinfo for bf::bit_field_error
+        mov     rdi, rbp
+        mov     QWORD PTR [rbp+0], OFFSET FLAT:vtable for bf::bit_field_error+16
+        call    __cxa_throw
+        mov     r12, rax
+        mov     rdi, rbp
+        call    __cxa_free_exception
+        mov     rdi, r12
+        call    _Unwind_Resume
+exception_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel):
+        push    r12
+        push    rbp
+        sub     rsp, 8
+        test    esi, -4
+        jne     .L102
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 5
+        and     eax, -97
+        or      esi, eax
+        mov     BYTE PTR [rdi], sil
+        add     rsp, 8
+        pop     rbp
+        pop     r12
+        ret
+exception_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel) [clone .cold]:
+.L102:
+        mov     edi, 16
+        call    __cxa_allocate_exception
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        mov     rbp, rax
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        mov     edx, OFFSET FLAT:bf::bit_field_error::~bit_field_error() [complete object destructor]
+        mov     esi, OFFSET FLAT:typeinfo for bf::bit_field_error
+        mov     rdi, rbp
+        mov     QWORD PTR [rbp+0], OFFSET FLAT:vtable for bf::bit_field_error+16
+        call    __cxa_throw
+        mov     r12, rax
+        mov     rdi, rbp
+        call    __cxa_free_exception
+        mov     rdi, r12
+        call    _Unwind_Resume
+
+exception_strategy::using_bf::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+exception_strategy::using_manual::get_direction(unsigned char):
+        shr     dil, 7
+        movzx   eax, dil
+        ret
+
+exception_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction):
+        push    r12
+        push    rbp
+        sub     rsp, 8
+        test    esi, -2
+        jne     .L86
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      esi, eax
+        mov     BYTE PTR [rdi], sil
+        add     rsp, 8
+        pop     rbp
+        pop     r12
+        ret
+exception_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction) [clone .cold]:
+.L86:
+        mov     edi, 16
+        call    __cxa_allocate_exception
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        mov     rbp, rax
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        mov     edx, OFFSET FLAT:bf::bit_field_error::~bit_field_error() [complete object destructor]
+        mov     esi, OFFSET FLAT:typeinfo for bf::bit_field_error
+        mov     rdi, rbp
+        mov     QWORD PTR [rbp+0], OFFSET FLAT:vtable for bf::bit_field_error+16
+        call    __cxa_throw
+        mov     r12, rax
+        mov     rdi, rbp
+        call    __cxa_free_exception
+        mov     rdi, r12
+        call    _Unwind_Resume
+exception_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction):
+        push    r12
+        push    rbp
+        sub     rsp, 8
+        test    esi, -2
+        jne     .L110
+        movzx   eax, BYTE PTR [rdi]
+        sal     esi, 7
+        and     eax, 127
+        or      esi, eax
+        mov     BYTE PTR [rdi], sil
+        add     rsp, 8
+        pop     rbp
+        pop     r12
+        ret
+exception_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction) [clone .cold]:
+.L110:
+        mov     edi, 16
+        call    __cxa_allocate_exception
+        mov     esi, OFFSET FLAT:.LC0
+        mov     rdi, rax
+        mov     rbp, rax
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        mov     edx, OFFSET FLAT:bf::bit_field_error::~bit_field_error() [complete object destructor]
+        mov     esi, OFFSET FLAT:typeinfo for bf::bit_field_error
+        mov     rdi, rbp
+        mov     QWORD PTR [rbp+0], OFFSET FLAT:vtable for bf::bit_field_error+16
+        call    __cxa_throw
+        mov     r12, rax
+        mov     rdi, rbp
+        call    __cxa_free_exception
+        mov     rdi, r12
+        call    _Unwind_Resume

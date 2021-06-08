@@ -1,0 +1,538 @@
+default_config::using_bf::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+default_config::using_manual::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+
+default_config::using_bf::set_address(unsigned char&, unsigned char):
+        lbu     a5,0(a0)
+        andi    a1,a1,31
+        andi    a5,a5,-32
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+default_config::using_manual::set_address(unsigned char&, unsigned char):
+        lbu     a5,0(a0)
+        andi    a1,a1,31
+        andi    a5,a5,-32
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+default_config::using_bf::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+default_config::using_manual::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+
+default_config::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::communication_channel):
+        lbu     a5,0(a0)
+        andi    a1,a1,3
+        slliw   a1,a1,5
+        andi    a5,a5,-97
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+default_config::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::communication_channel):
+        lbu     a5,0(a0)
+        slliw   a1,a1,5
+        andi    a1,a1,96
+        andi    a5,a5,-97
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+default_config::using_bf::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+default_config::using_manual::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+
+default_config::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::transmission_direction):
+        lbu     a5,0(a0)
+        andi    a1,a1,1
+        slliw   a1,a1,7
+        andi    a5,a5,127
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+default_config::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::transmission_direction):
+        lbu     a5,0(a0)
+        slliw   a1,a1,7
+        andi    a5,a5,127
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+no_shift::using_bf::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+no_shift::using_manual::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+
+no_shift::using_bf::set_address(unsigned char&, unsigned char):
+        lbu     a5,0(a0)
+        andi    a1,a1,31
+        andi    a5,a5,-32
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+no_shift::using_manual::set_address(unsigned char&, unsigned char):
+        lbu     a5,0(a0)
+        andi    a1,a1,31
+        andi    a5,a5,-32
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+no_shift::using_bf::get_channel(unsigned char):
+        andi    a0,a0,96
+        ret
+no_shift::using_manual::get_channel(unsigned char):
+        andi    a0,a0,96
+        ret
+
+no_shift::using_bf::set_channel(unsigned char&, no_shift::m_sequence_control::communication_channel):
+        lbu     a5,0(a0)
+        andi    a1,a1,96
+        andi    a5,a5,-97
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+no_shift::using_manual::set_channel(unsigned char&, no_shift::m_sequence_control::communication_channel):
+        lbu     a5,0(a0)
+        andi    a1,a1,96
+        andi    a5,a5,-97
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+no_shift::using_bf::get_direction(unsigned char):
+        andi    a0,a0,128
+        ret
+no_shift::using_manual::get_direction(unsigned char):
+        andi    a0,a0,128
+        ret
+
+no_shift::using_bf::set_direction(unsigned char&, no_shift::m_sequence_control::transmission_direction):
+        lbu     a5,0(a0)
+        andi    a1,a1,128
+        andi    a5,a5,127
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+no_shift::using_manual::set_direction(unsigned char&, no_shift::m_sequence_control::transmission_direction):
+        lbu     a5,0(a0)
+        andi    a1,a1,128
+        andi    a5,a5,127
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+unchecked_strategy::using_bf::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+unchecked_strategy::using_manual::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+
+unchecked_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        lbu     a5,0(a0)
+        andi    a5,a5,-32
+        or      a1,a1,a5
+        sb      a1,0(a0)
+        ret
+unchecked_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        lbu     a5,0(a0)
+        andi    a5,a5,-32
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+unchecked_strategy::using_bf::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+unchecked_strategy::using_manual::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+
+unchecked_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::communication_channel):
+        lbu     a5,0(a0)
+        slliw   a1,a1,5
+        andi    a5,a5,-97
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+unchecked_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::communication_channel):
+        lbu     a5,0(a0)
+        slliw   a1,a1,5
+        andi    a5,a5,-97
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+unchecked_strategy::using_bf::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+unchecked_strategy::using_manual::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+
+unchecked_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::transmission_direction):
+        lbu     a5,0(a0)
+        slliw   a1,a1,7
+        andi    a5,a5,127
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+unchecked_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::transmission_direction):
+        lbu     a5,0(a0)
+        slliw   a1,a1,7
+        andi    a5,a5,127
+        or      a5,a5,a1
+        sb      a5,0(a0)
+        ret
+
+return_bool_strategy::using_bf::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+return_bool_strategy::using_manual::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+
+return_bool_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        andi    a4,a1,224
+        mv      a5,a0
+        bne     a4,zero,.L44
+        lbu     a4,0(a0)
+        li      a0,1
+        andi    a4,a4,-32
+        or      a1,a1,a4
+        sb      a1,0(a5)
+        ret
+.L44:
+        li      a0,0
+        ret
+return_bool_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        andi    a4,a1,224
+        mv      a5,a0
+        bne     a4,zero,.L56
+        lbu     a4,0(a0)
+        li      a0,1
+        andi    a4,a4,-32
+        or      a1,a4,a1
+        sb      a1,0(a5)
+        ret
+.L56:
+        li      a0,0
+        ret
+
+return_bool_strategy::using_bf::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+return_bool_strategy::using_manual::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+
+return_bool_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::communication_channel):
+        andi    a4,a1,-4
+        mv      a5,a0
+        bne     a4,zero,.L48
+        lbu     a4,0(a0)
+        slliw   a1,a1,5
+        li      a0,1
+        andi    a4,a4,-97
+        or      a1,a4,a1
+        sb      a1,0(a5)
+        ret
+.L48:
+        li      a0,0
+        ret
+return_bool_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::communication_channel):
+        andi    a4,a1,-4
+        mv      a5,a0
+        bne     a4,zero,.L60
+        lbu     a4,0(a0)
+        slliw   a1,a1,5
+        li      a0,1
+        andi    a4,a4,-97
+        or      a1,a4,a1
+        sb      a1,0(a5)
+        ret
+.L60:
+        li      a0,0
+        ret
+
+return_bool_strategy::using_bf::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+return_bool_strategy::using_manual::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+
+return_bool_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::transmission_direction):
+        andi    a4,a1,-2
+        mv      a5,a0
+        bne     a4,zero,.L52
+        lbu     a4,0(a0)
+        slliw   a1,a1,7
+        li      a0,1
+        andi    a4,a4,127
+        or      a1,a4,a1
+        sb      a1,0(a5)
+        ret
+.L52:
+        li      a0,0
+        ret
+return_bool_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::transmission_direction):
+        andi    a4,a1,-2
+        mv      a5,a0
+        bne     a4,zero,.L64
+        lbu     a4,0(a0)
+        slliw   a1,a1,7
+        li      a0,1
+        andi    a4,a4,127
+        or      a1,a4,a1
+        sb      a1,0(a5)
+        ret
+.L64:
+        li      a0,0
+        ret
+
+exception_strategy::using_bf::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+exception_strategy::using_manual::get_address(unsigned char):
+        andi    a0,a0,31
+        ret
+
+exception_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        andi    a5,a1,224
+        bne     a5,zero,.L74
+        lbu     a5,0(a0)
+        andi    a5,a5,-32
+        or      a1,a1,a5
+        sb      a1,0(a0)
+        ret
+.L74:
+        addi    sp,sp,-32
+        li      a0,16
+        sd      s0,16(sp)
+        sd      ra,24(sp)
+        sd      s1,8(sp)
+        call    __cxa_allocate_exception
+        lui     a1,%hi(.LC0)
+        addi    a1,a1,%lo(.LC0)
+        mv      s0,a0
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        lui     a2,%hi(_ZN2bf15bit_field_errorD1Ev)
+        lui     a1,%hi(typeinfo for bf::bit_field_error)
+        lui     a5,%hi(vtable for bf::bit_field_error+16)
+        addi    a5,a5,%lo(vtable for bf::bit_field_error+16)
+        addi    a2,a2,%lo(_ZN2bf15bit_field_errorD1Ev)
+        addi    a1,a1,%lo(typeinfo for bf::bit_field_error)
+        mv      a0,s0
+        sd      a5,0(s0)
+        call    __cxa_throw
+        mv      s1,a0
+        mv      a0,s0
+        call    __cxa_free_exception
+        mv      a0,s1
+        call    _Unwind_Resume
+exception_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        andi    a5,a1,224
+        bne     a5,zero,.L104
+        lbu     a5,0(a0)
+        andi    a5,a5,-32
+        or      a1,a5,a1
+        sb      a1,0(a0)
+        ret
+.L104:
+        addi    sp,sp,-32
+        li      a0,16
+        sd      s0,16(sp)
+        sd      ra,24(sp)
+        sd      s1,8(sp)
+        call    __cxa_allocate_exception
+        lui     a1,%hi(.LC0)
+        addi    a1,a1,%lo(.LC0)
+        mv      s0,a0
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        lui     a2,%hi(_ZN2bf15bit_field_errorD1Ev)
+        lui     a1,%hi(typeinfo for bf::bit_field_error)
+        lui     a5,%hi(vtable for bf::bit_field_error+16)
+        addi    a5,a5,%lo(vtable for bf::bit_field_error+16)
+        addi    a2,a2,%lo(_ZN2bf15bit_field_errorD1Ev)
+        addi    a1,a1,%lo(typeinfo for bf::bit_field_error)
+        mv      a0,s0
+        sd      a5,0(s0)
+        call    __cxa_throw
+        mv      s1,a0
+        mv      a0,s0
+        call    __cxa_free_exception
+        mv      a0,s1
+        call    _Unwind_Resume
+
+exception_strategy::using_bf::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+exception_strategy::using_manual::get_channel(unsigned char):
+        srli    a0,a0,5
+        andi    a0,a0,3
+        ret
+
+exception_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel):
+        andi    a5,a1,-4
+        bne     a5,zero,.L84
+        lbu     a5,0(a0)
+        slliw   a1,a1,5
+        andi    a5,a5,-97
+        or      a1,a5,a1
+        sb      a1,0(a0)
+        ret
+.L84:
+        addi    sp,sp,-32
+        li      a0,16
+        sd      s0,16(sp)
+        sd      ra,24(sp)
+        sd      s1,8(sp)
+        call    __cxa_allocate_exception
+        lui     a1,%hi(.LC0)
+        addi    a1,a1,%lo(.LC0)
+        mv      s0,a0
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        lui     a2,%hi(_ZN2bf15bit_field_errorD1Ev)
+        lui     a1,%hi(typeinfo for bf::bit_field_error)
+        lui     a5,%hi(vtable for bf::bit_field_error+16)
+        addi    a5,a5,%lo(vtable for bf::bit_field_error+16)
+        addi    a2,a2,%lo(_ZN2bf15bit_field_errorD1Ev)
+        addi    a1,a1,%lo(typeinfo for bf::bit_field_error)
+        mv      a0,s0
+        sd      a5,0(s0)
+        call    __cxa_throw
+        mv      s1,a0
+        mv      a0,s0
+        call    __cxa_free_exception
+        mv      a0,s1
+        call    _Unwind_Resume
+exception_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel):
+        andi    a5,a1,-4
+        bne     a5,zero,.L114
+        lbu     a5,0(a0)
+        slliw   a1,a1,5
+        andi    a5,a5,-97
+        or      a1,a5,a1
+        sb      a1,0(a0)
+        ret
+.L114:
+        addi    sp,sp,-32
+        li      a0,16
+        sd      s0,16(sp)
+        sd      ra,24(sp)
+        sd      s1,8(sp)
+        call    __cxa_allocate_exception
+        lui     a1,%hi(.LC0)
+        addi    a1,a1,%lo(.LC0)
+        mv      s0,a0
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        lui     a2,%hi(_ZN2bf15bit_field_errorD1Ev)
+        lui     a1,%hi(typeinfo for bf::bit_field_error)
+        lui     a5,%hi(vtable for bf::bit_field_error+16)
+        addi    a5,a5,%lo(vtable for bf::bit_field_error+16)
+        addi    a2,a2,%lo(_ZN2bf15bit_field_errorD1Ev)
+        addi    a1,a1,%lo(typeinfo for bf::bit_field_error)
+        mv      a0,s0
+        sd      a5,0(s0)
+        call    __cxa_throw
+        mv      s1,a0
+        mv      a0,s0
+        call    __cxa_free_exception
+        mv      a0,s1
+        call    _Unwind_Resume
+
+exception_strategy::using_bf::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+exception_strategy::using_manual::get_direction(unsigned char):
+        srli    a0,a0,7
+        ret
+
+exception_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction):
+        andi    a5,a1,-2
+        bne     a5,zero,.L94
+        lbu     a5,0(a0)
+        slliw   a1,a1,7
+        andi    a5,a5,127
+        or      a1,a5,a1
+        sb      a1,0(a0)
+        ret
+.L94:
+        addi    sp,sp,-32
+        li      a0,16
+        sd      s0,16(sp)
+        sd      ra,24(sp)
+        sd      s1,8(sp)
+        call    __cxa_allocate_exception
+        lui     a1,%hi(.LC0)
+        addi    a1,a1,%lo(.LC0)
+        mv      s0,a0
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        lui     a2,%hi(_ZN2bf15bit_field_errorD1Ev)
+        lui     a1,%hi(typeinfo for bf::bit_field_error)
+        lui     a5,%hi(vtable for bf::bit_field_error+16)
+        addi    a5,a5,%lo(vtable for bf::bit_field_error+16)
+        addi    a2,a2,%lo(_ZN2bf15bit_field_errorD1Ev)
+        addi    a1,a1,%lo(typeinfo for bf::bit_field_error)
+        mv      a0,s0
+        sd      a5,0(s0)
+        call    __cxa_throw
+        mv      s1,a0
+        mv      a0,s0
+        call    __cxa_free_exception
+        mv      a0,s1
+        call    _Unwind_Resume
+exception_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction):
+        andi    a5,a1,-2
+        bne     a5,zero,.L124
+        lbu     a5,0(a0)
+        slliw   a1,a1,7
+        andi    a5,a5,127
+        or      a1,a5,a1
+        sb      a1,0(a0)
+        ret
+.L124:
+        addi    sp,sp,-32
+        li      a0,16
+        sd      s0,16(sp)
+        sd      ra,24(sp)
+        sd      s1,8(sp)
+        call    __cxa_allocate_exception
+        lui     a1,%hi(.LC0)
+        addi    a1,a1,%lo(.LC0)
+        mv      s0,a0
+        call    std::runtime_error::runtime_error(char const*) [base object constructor]
+        lui     a2,%hi(_ZN2bf15bit_field_errorD1Ev)
+        lui     a1,%hi(typeinfo for bf::bit_field_error)
+        lui     a5,%hi(vtable for bf::bit_field_error+16)
+        addi    a5,a5,%lo(vtable for bf::bit_field_error+16)
+        addi    a2,a2,%lo(_ZN2bf15bit_field_errorD1Ev)
+        addi    a1,a1,%lo(typeinfo for bf::bit_field_error)
+        mv      a0,s0
+        sd      a5,0(s0)
+        call    __cxa_throw
+        mv      s1,a0
+        mv      a0,s0
+        call    __cxa_free_exception
+        mv      a0,s1
+        call    _Unwind_Resume

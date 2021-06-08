@@ -1,0 +1,491 @@
+default_config::using_bf::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+default_config::using_manual::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+
+default_config::using_bf::set_address(unsigned char&, unsigned char):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 0, 5
+        strb    w2, [x0]
+        ret
+default_config::using_manual::set_address(unsigned char&, unsigned char):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 0, 5
+        strb    w2, [x0]
+        ret
+
+default_config::using_bf::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+default_config::using_manual::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+
+default_config::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::communication_channel):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 5, 2
+        strb    w2, [x0]
+        ret
+default_config::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::communication_channel):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 5, 2
+        strb    w2, [x0]
+        ret
+
+default_config::using_bf::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+default_config::using_manual::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+
+default_config::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::transmission_direction):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 7, 25
+        strb    w2, [x0]
+        ret
+default_config::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)4}>::transmission_direction):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 7, 25
+        strb    w2, [x0]
+        ret
+
+no_shift::using_bf::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+no_shift::using_manual::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+
+no_shift::using_bf::set_address(unsigned char&, unsigned char):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 0, 5
+        strb    w2, [x0]
+        ret
+no_shift::using_manual::set_address(unsigned char&, unsigned char):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 0, 5
+        strb    w2, [x0]
+        ret
+
+no_shift::using_bf::get_channel(unsigned char):
+        and     w0, w0, 96
+        ret
+no_shift::using_manual::get_channel(unsigned char):
+        and     w0, w0, 96
+        ret
+
+no_shift::using_bf::set_channel(unsigned char&, no_shift::m_sequence_control::communication_channel):
+        ldrb    w2, [x0]
+        and     w1, w1, 96
+        and     w2, w2, -97
+        orr     w2, w2, w1
+        strb    w2, [x0]
+        ret
+no_shift::using_manual::set_channel(unsigned char&, no_shift::m_sequence_control::communication_channel):
+        ldrb    w2, [x0]
+        and     w1, w1, 96
+        and     w2, w2, -97
+        orr     w2, w2, w1
+        strb    w2, [x0]
+        ret
+
+no_shift::using_bf::get_direction(unsigned char):
+        and     w0, w0, 128
+        ret
+no_shift::using_manual::get_direction(unsigned char):
+        and     w0, w0, 128
+        ret
+
+no_shift::using_bf::set_direction(unsigned char&, no_shift::m_sequence_control::transmission_direction):
+        ldrb    w2, [x0]
+        and     w1, w1, 128
+        and     w2, w2, 127
+        orr     w2, w2, w1
+        strb    w2, [x0]
+        ret
+no_shift::using_manual::set_direction(unsigned char&, no_shift::m_sequence_control::transmission_direction):
+        ldrb    w2, [x0]
+        and     w1, w1, 128
+        and     w2, w2, 127
+        orr     w2, w2, w1
+        strb    w2, [x0]
+        ret
+
+unchecked_strategy::using_bf::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+unchecked_strategy::using_manual::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+
+unchecked_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        ldrb    w2, [x0]
+        and     w2, w2, -32
+        orr     w1, w1, w2
+        strb    w1, [x0]
+        ret
+unchecked_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        ldrb    w2, [x0]
+        and     w2, w2, -32
+        orr     w1, w1, w2
+        strb    w1, [x0]
+        ret
+
+unchecked_strategy::using_bf::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+unchecked_strategy::using_manual::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+
+unchecked_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::communication_channel):
+        ldrb    w2, [x0]
+        and     w2, w2, -97
+        orr     w1, w2, w1, lsl 5
+        strb    w1, [x0]
+        ret
+unchecked_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::communication_channel):
+        ldrb    w2, [x0]
+        and     w2, w2, -97
+        orr     w1, w2, w1, lsl 5
+        strb    w1, [x0]
+        ret
+
+unchecked_strategy::using_bf::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+unchecked_strategy::using_manual::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+
+unchecked_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::transmission_direction):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 7, 25
+        strb    w2, [x0]
+        ret
+unchecked_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)0}>::transmission_direction):
+        ldrb    w2, [x0]
+        bfi     w2, w1, 7, 25
+        strb    w2, [x0]
+        ret
+
+return_bool_strategy::using_bf::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+return_bool_strategy::using_manual::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+
+return_bool_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        mov     x2, x0
+        and     w3, w1, 255
+        mov     w0, 0
+        tst     w1, 224
+        bne     .L43
+        ldrb    w1, [x2]
+        mov     w0, 1
+        and     w1, w1, -32
+        orr     w3, w3, w1
+        strb    w3, [x2]
+.L43:
+        ret
+return_bool_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        mov     x2, x0
+        and     w3, w1, 255
+        mov     w0, 0
+        tst     w1, 224
+        bne     .L55
+        ldrb    w1, [x2]
+        mov     w0, 1
+        and     w1, w1, -32
+        orr     w1, w1, w3
+        strb    w1, [x2]
+.L55:
+        ret
+
+return_bool_strategy::using_bf::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+return_bool_strategy::using_manual::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+
+return_bool_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::communication_channel):
+        mov     w2, 0
+        tst     w1, -4
+        bne     .L47
+        ldrb    w3, [x0]
+        mov     w2, 1
+        and     w3, w3, -97
+        orr     w1, w3, w1, lsl 5
+        strb    w1, [x0]
+.L47:
+        mov     w0, w2
+        ret
+return_bool_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::communication_channel):
+        mov     w2, 0
+        tst     w1, -4
+        bne     .L59
+        ldrb    w3, [x0]
+        mov     w2, 1
+        and     w3, w3, -97
+        orr     w1, w3, w1, lsl 5
+        strb    w1, [x0]
+.L59:
+        mov     w0, w2
+        ret
+
+return_bool_strategy::using_bf::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+return_bool_strategy::using_manual::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+
+return_bool_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::transmission_direction):
+        mov     w2, 0
+        tst     w1, -2
+        bne     .L51
+        ldrb    w3, [x0]
+        mov     w2, 1
+        bfi     w3, w1, 7, 25
+        strb    w3, [x0]
+.L51:
+        mov     w0, w2
+        ret
+return_bool_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)2}>::transmission_direction):
+        mov     w2, 0
+        tst     w1, -2
+        bne     .L63
+        ldrb    w3, [x0]
+        mov     w2, 1
+        bfi     w3, w1, 7, 25
+        strb    w3, [x0]
+.L63:
+        mov     w0, w2
+        ret
+
+exception_strategy::using_bf::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+exception_strategy::using_manual::get_address(unsigned char):
+        and     w0, w0, 31
+        ret
+
+exception_strategy::using_bf::set_address(unsigned char&, unsigned char):
+        tst     w1, 224
+        bne     .L74
+        and     w2, w1, 255
+        ldrb    w1, [x0]
+        and     w1, w1, -32
+        orr     w2, w2, w1
+        strb    w2, [x0]
+        ret
+.L74:
+        stp     x29, x30, [sp, -32]!
+        mov     x0, 16
+        mov     x29, sp
+        str     x19, [sp, 16]
+        bl      __cxa_allocate_exception
+        adrp    x1, .LC0
+        mov     x19, x0
+        add     x1, x1, :lo12:.LC0
+        bl      std::runtime_error::runtime_error(char const*) [base object constructor]
+        adrp    x3, vtable for bf::bit_field_error+16
+        add     x3, x3, :lo12:vtable for bf::bit_field_error+16
+        str     x3, [x19]
+        adrp    x2, _ZN2bf15bit_field_errorD1Ev
+        adrp    x1, typeinfo for bf::bit_field_error
+        mov     x0, x19
+        add     x2, x2, :lo12:_ZN2bf15bit_field_errorD1Ev
+        add     x1, x1, :lo12:typeinfo for bf::bit_field_error
+        bl      __cxa_throw
+        mov     x1, x0
+        mov     x0, x19
+        mov     x19, x1
+        bl      __cxa_free_exception
+        mov     x0, x19
+        bl      _Unwind_Resume
+exception_strategy::using_manual::set_address(unsigned char&, unsigned char):
+        tst     w1, 224
+        bne     .L104
+        and     w2, w1, 255
+        ldrb    w1, [x0]
+        and     w1, w1, -32
+        orr     w1, w1, w2
+        strb    w1, [x0]
+        ret
+.L104:
+        stp     x29, x30, [sp, -32]!
+        mov     x0, 16
+        mov     x29, sp
+        str     x19, [sp, 16]
+        bl      __cxa_allocate_exception
+        adrp    x1, .LC0
+        mov     x19, x0
+        add     x1, x1, :lo12:.LC0
+        bl      std::runtime_error::runtime_error(char const*) [base object constructor]
+        adrp    x3, vtable for bf::bit_field_error+16
+        add     x3, x3, :lo12:vtable for bf::bit_field_error+16
+        str     x3, [x19]
+        adrp    x2, _ZN2bf15bit_field_errorD1Ev
+        adrp    x1, typeinfo for bf::bit_field_error
+        mov     x0, x19
+        add     x2, x2, :lo12:_ZN2bf15bit_field_errorD1Ev
+        add     x1, x1, :lo12:typeinfo for bf::bit_field_error
+        bl      __cxa_throw
+        mov     x1, x0
+        mov     x0, x19
+        mov     x19, x1
+        bl      __cxa_free_exception
+        mov     x0, x19
+        bl      _Unwind_Resume
+
+exception_strategy::using_bf::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+exception_strategy::using_manual::get_channel(unsigned char):
+        ubfx    w0, w0, 5, 2
+        ret
+
+exception_strategy::using_bf::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel):
+        tst     w1, -4
+        bne     .L84
+        ldrb    w2, [x0]
+        and     w2, w2, -97
+        orr     w1, w2, w1, lsl 5
+        strb    w1, [x0]
+        ret
+.L84:
+        stp     x29, x30, [sp, -32]!
+        mov     x0, 16
+        mov     x29, sp
+        str     x19, [sp, 16]
+        bl      __cxa_allocate_exception
+        adrp    x1, .LC0
+        mov     x19, x0
+        add     x1, x1, :lo12:.LC0
+        bl      std::runtime_error::runtime_error(char const*) [base object constructor]
+        adrp    x3, vtable for bf::bit_field_error+16
+        add     x3, x3, :lo12:vtable for bf::bit_field_error+16
+        str     x3, [x19]
+        adrp    x2, _ZN2bf15bit_field_errorD1Ev
+        adrp    x1, typeinfo for bf::bit_field_error
+        mov     x0, x19
+        add     x2, x2, :lo12:_ZN2bf15bit_field_errorD1Ev
+        add     x1, x1, :lo12:typeinfo for bf::bit_field_error
+        bl      __cxa_throw
+        mov     x1, x0
+        mov     x0, x19
+        mov     x19, x1
+        bl      __cxa_free_exception
+        mov     x0, x19
+        bl      _Unwind_Resume
+exception_strategy::using_manual::set_channel(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::communication_channel):
+        tst     w1, -4
+        bne     .L114
+        ldrb    w2, [x0]
+        and     w2, w2, -97
+        orr     w1, w2, w1, lsl 5
+        strb    w1, [x0]
+        ret
+.L114:
+        stp     x29, x30, [sp, -32]!
+        mov     x0, 16
+        mov     x29, sp
+        str     x19, [sp, 16]
+        bl      __cxa_allocate_exception
+        adrp    x1, .LC0
+        mov     x19, x0
+        add     x1, x1, :lo12:.LC0
+        bl      std::runtime_error::runtime_error(char const*) [base object constructor]
+        adrp    x3, vtable for bf::bit_field_error+16
+        add     x3, x3, :lo12:vtable for bf::bit_field_error+16
+        str     x3, [x19]
+        adrp    x2, _ZN2bf15bit_field_errorD1Ev
+        adrp    x1, typeinfo for bf::bit_field_error
+        mov     x0, x19
+        add     x2, x2, :lo12:_ZN2bf15bit_field_errorD1Ev
+        add     x1, x1, :lo12:typeinfo for bf::bit_field_error
+        bl      __cxa_throw
+        mov     x1, x0
+        mov     x0, x19
+        mov     x19, x1
+        bl      __cxa_free_exception
+        mov     x0, x19
+        bl      _Unwind_Resume
+
+exception_strategy::using_bf::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+exception_strategy::using_manual::get_direction(unsigned char):
+        ubfx    w0, w0, 7, 1
+        ret
+
+exception_strategy::using_bf::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction):
+        tst     w1, -2
+        bne     .L94
+        ldrb    w2, [x0]
+        bfi     w2, w1, 7, 25
+        strb    w2, [x0]
+        ret
+.L94:
+        stp     x29, x30, [sp, -32]!
+        mov     x0, 16
+        mov     x29, sp
+        str     x19, [sp, 16]
+        bl      __cxa_allocate_exception
+        adrp    x1, .LC0
+        mov     x19, x0
+        add     x1, x1, :lo12:.LC0
+        bl      std::runtime_error::runtime_error(char const*) [base object constructor]
+        adrp    x3, vtable for bf::bit_field_error+16
+        add     x3, x3, :lo12:vtable for bf::bit_field_error+16
+        str     x3, [x19]
+        adrp    x2, _ZN2bf15bit_field_errorD1Ev
+        adrp    x1, typeinfo for bf::bit_field_error
+        mov     x0, x19
+        add     x2, x2, :lo12:_ZN2bf15bit_field_errorD1Ev
+        add     x1, x1, :lo12:typeinfo for bf::bit_field_error
+        bl      __cxa_throw
+        mov     x1, x0
+        mov     x0, x19
+        mov     x19, x1
+        bl      __cxa_free_exception
+        mov     x0, x19
+        bl      _Unwind_Resume
+exception_strategy::using_manual::set_direction(unsigned char&, m_sequence_control_template<bf::bit_field_config<void>{18446744073709551615ul, (bf::bit_field_assignment_strategy)3}>::transmission_direction):
+        tst     w1, -2
+        bne     .L124
+        ldrb    w2, [x0]
+        bfi     w2, w1, 7, 25
+        strb    w2, [x0]
+        ret
+.L124:
+        stp     x29, x30, [sp, -32]!
+        mov     x0, 16
+        mov     x29, sp
+        str     x19, [sp, 16]
+        bl      __cxa_allocate_exception
+        adrp    x1, .LC0
+        mov     x19, x0
+        add     x1, x1, :lo12:.LC0
+        bl      std::runtime_error::runtime_error(char const*) [base object constructor]
+        adrp    x3, vtable for bf::bit_field_error+16
+        add     x3, x3, :lo12:vtable for bf::bit_field_error+16
+        str     x3, [x19]
+        adrp    x2, _ZN2bf15bit_field_errorD1Ev
+        adrp    x1, typeinfo for bf::bit_field_error
+        mov     x0, x19
+        add     x2, x2, :lo12:_ZN2bf15bit_field_errorD1Ev
+        add     x1, x1, :lo12:typeinfo for bf::bit_field_error
+        bl      __cxa_throw
+        mov     x1, x0
+        mov     x0, x19
+        mov     x19, x1
+        bl      __cxa_free_exception
+        mov     x0, x19
+        bl      _Unwind_Resume
